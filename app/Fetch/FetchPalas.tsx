@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ActivityIndicator, Dimensions, FlatList, StyleSheet, Text, View } from 'react-native';
-import UserCard from './UserCard';
-import { User } from './types';
-import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
+import UserCard from '../UserCard';
+import { User } from '../types';
 
 
 const ApiExample = () => {
@@ -10,12 +9,6 @@ const ApiExample = () => {
   const { width } = Dimensions.get('window');
 
   // Definir cuántas columnas mostrar según el ancho
-  const getNumColumns = () => {
-    if (width > 1024) return 4;    // Desktop grande
-    if (width > 768) return 3;     // Tablet/Desktop
-    if (width > 480) return 2;     // Tablets pequeñas
-    return 6;                      // Móviles
-  };
 
   // ✅ Estados correctamente definidos
   const [data, setData] = useState<User[]>([]);
@@ -97,7 +90,6 @@ const ApiExample = () => {
 
   // Renderizado de la lista de usuarios
   // En el return de ApiExample.tsx, reemplaza el FlatList actual con:
-  if (width < 480) {
     return (<FlatList
       data={data}
       renderItem={({ item }) => <UserCard item={item} />}
@@ -107,22 +99,6 @@ const ApiExample = () => {
       style={[styles.flatList, {paddingHorizontal: '5%'}]} // ✅ Ajusta el ancho al 90% para pantallas más grandes
     />
     );
-  }
-  else {
-    return (
-      <FlatList
-        data={data}
-        keyExtractor={(item) => item.id.toString()}
-        numColumns={getNumColumns()}
-
-        columnWrapperStyle={styles.columnWrapper}
-        contentContainerStyle={styles.listContainer}
-        showsVerticalScrollIndicator={true}
-        renderItem={({ item }) => <UserCard item={item} />}
-        style={styles.flatList} // ✅ Añade este estilo
-      />
-    );
-  };
 }
 
 const styles = StyleSheet.create({

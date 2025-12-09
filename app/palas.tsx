@@ -1,10 +1,9 @@
 import { StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { Link } from 'expo-router';
 
 
 
-import ApiExample from "./FetchPalas";
+import ApiExample from "./Fetch/FetchPalas";
 
 
 

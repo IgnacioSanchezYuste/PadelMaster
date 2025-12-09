@@ -1,15 +1,14 @@
-import React from 'react';
+import { MaterialIcons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
   Dimensions,
   SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { MaterialIcons } from '@expo/vector-icons';
 
 const { width } = Dimensions.get('window');
 const CARD_MARGIN = 10;
@@ -19,7 +18,7 @@ const CARD_WIDTH = (width - CARD_MARGIN * 4) / 2;
 const categories = [
   {
     id: 1,
-    String, name: 'palas',
+    name: 'palas',
     title: 'Palas',
     icon: 'sports-tennis' as const,
     color: '#4CAF50',
@@ -68,21 +67,18 @@ const categories = [
 ] as const;
 
 export default function CategoriesScreen() {
-  const navigation = useNavigation();
+  const router = useRouter();
 
-  const handleCategoryPress = (categoryName: any) => {
-    // Aquí navegarías al archivo correspondiente
-    // Por ejemplo: navigation.navigate(categoryName);
+  const handleCategoryPress = (categoryName: string) => {
     console.log(`Navegando a: ${categoryName}`);
-    // En tu caso, podrías usar:
-    // navigation.navigate(categoryName);
+    router.navigate(`./${categoryName}` as unknown as never);
   };
 
   const CategoryCard = ({ category }: { category: (typeof categories)[number] }) => {
     return (
       <TouchableOpacity
         style={styles.cardContainer}
-        onPress={() => navigation.navigate(category.name as never)}
+        onPress={() => handleCategoryPress(category.name)}
         activeOpacity={0.8}>
         <View style={[styles.card, { backgroundColor: category.color }]}>
           <View style={styles.iconContainer}>

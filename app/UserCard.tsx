@@ -1,6 +1,7 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { User } from './types';
+import { Link } from 'expo-router';
 
 
 // Definimos el tipo Props para el componente UserCard
@@ -10,20 +11,21 @@ type Props = {
 // Recibe un props con item dentro
 const UserCard = ({ item }: Props) => {
   return (
-    <View style={styles.card}>
-      <View style={styles.imageContainer}>
-        {/* ✅ Contenedor para la imagen */}
-        <Image 
-          source={{ uri: item.img }} 
-          style={styles.image}
-          resizeMode="contain"
-        />
-      </View>
-      <View style={styles.infoContainer}>
-        <Text style={styles.title} numberOfLines={2}>{item.name}</Text>
-        <Text style={styles.price}>{item.price} €</Text>
-      </View>
-    </View> 
+    <Link href={{ pathname: `./Detalles/${item.Categoría}_Detail`, params: { itemID: item.id } }} asChild>
+      <Pressable style={styles.card}>
+        <View style={styles.imageContainer}>
+          <Image 
+            source={{ uri: item.img }} 
+            style={styles.image}
+            resizeMode="contain"
+          />
+        </View>
+        <View style={styles.infoContainer}>
+          <Text style={styles.title} numberOfLines={2}>{item.name}</Text>
+          <Text style={styles.price}>{item.price} €</Text>
+        </View>
+      </Pressable>
+    </Link>
   );
 };
 
@@ -37,10 +39,19 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: 6,
     shadowOffset: { width: 0, height: 4 },
-    width: '22%',
+    width: '100%',
     height: 'auto', // ✅ Altura fija para uniformidad
     marginHorizontal: 1,
     marginBottom: 15,
+    textDecorationLine: 'none',
+  },
+  linkd:{
+    textDecorationLine: 'none',
+    padding: 0,
+    margin: 0,
+    height: 'auto',
+    width: 'auto',
+
   },
   imageContainer: {
     aspectRatio: 1, // ✅ Mantiene relación 2:1 (rectángulo)

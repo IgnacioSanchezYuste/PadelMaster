@@ -21,27 +21,9 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Palas',
+          title: 'Categorías',
           tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? 'home-sharp' : 'home-outline'} color={color} size={24} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="pelotas"
-        options={{
-          title: 'Pelotas',
-          tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? 'tennisball' : 'tennisball-outline'} color={color} size={24}/>
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="pala_Detail"
-        options={{
-          title: 'pala Detail',
-          tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? 'information-circle' : 'information-outline'} color={color} size={24}/>
+            <Ionicons name={focused ? 'search' : 'search-outline'} color={color} size={24} />
           ),
         }}
       />

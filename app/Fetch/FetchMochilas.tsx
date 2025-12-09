@@ -1,21 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ActivityIndicator, Dimensions, FlatList, StyleSheet, Text, View } from 'react-native';
-import UserCard from './UserCard';
-import { User } from './types';
-import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
+import UserCard from '../UserCard';
+import { User } from '../types';
 
 
-const ApiPelotas = () => {
+const ApiMochilas = () => {
 
   const { width } = Dimensions.get('window');
 
   // Definir cuántas columnas mostrar según el ancho
-  const getNumColumns = () => {
-    if (width > 1024) return 4;    // Desktop grande
-    if (width > 768) return 3;     // Tablet/Desktop
-    if (width > 480) return 2;     // Tablets pequeñas
-    return 6;                      // Móviles
-  };
 
   // ✅ Estados correctamente definidos
   const [data, setData] = useState<User[]>([]);
@@ -25,7 +18,7 @@ const ApiPelotas = () => {
   // Función para obtener datos de la API
   const fetchData = async (): Promise<void> => {
     try {
-      const response = await fetch('https://ignaciosanchezyuste.es/API_PADEL/pelotas');
+      const response = await fetch('https://ignaciosanchezyuste.es/API_PADEL/mochilas_paleteros');
 
       // Verifica si hay respuesta
       if (!response) {
@@ -38,13 +31,18 @@ const ApiPelotas = () => {
 
       const json = await response.json();
 
-      // ✅ Accede a la propiedad "palas"
-      if (json && json.pelotas && Array.isArray(json.pelotas)) {
-        console.log('Número de pelotas:', json.pelotas.length);
-        setData(json.pelotas);
+      // DEBUG
+      console.log('Respuesta JSON completa:', json);
+      console.log('Tipo de json:', typeof json);
+      //console.log('¿Tiene propiedad palas?:', 'palas' in json);
+
+      // ✅ Accede a la propiedad "mochilas"
+      if (json && json.mochilas_paleteros && Array.isArray(json.mochilas_paleteros)) {
+        console.log('Número de mochilas:', json.mochilas_paleteros.length);
+        setData(json.mochilas_paleteros);
       } else {
         console.warn('Formato inesperado:', json);
-        setData(json.pelotas);
+        setData(json.mochilas_paleteros);
       }
     } catch (err: any) {
       console.error('Error en fetchData:', err);
@@ -92,7 +90,6 @@ const ApiPelotas = () => {
 
   // Renderizado de la lista de usuarios
   // En el return de ApiExample.tsx, reemplaza el FlatList actual con:
-  if (width < 480) {
     return (<FlatList
       data={data}
       renderItem={({ item }) => <UserCard item={item} />}
@@ -102,22 +99,6 @@ const ApiPelotas = () => {
       style={[styles.flatList, {paddingHorizontal: '5%'}]} // ✅ Ajusta el ancho al 90% para pantallas más grandes
     />
     );
-  }
-  else {
-    return (
-      <FlatList
-        data={data}
-        keyExtractor={(item) => item.id.toString()}
-        numColumns={getNumColumns()}
-
-        columnWrapperStyle={styles.columnWrapper}
-        contentContainerStyle={styles.listContainer}
-        showsVerticalScrollIndicator={true}
-        renderItem={({ item }) => <UserCard item={item} />}
-        style={styles.flatList} // ✅ Añade este estilo
-      />
-    );
-  };
 }
 
 const styles = StyleSheet.create({
@@ -157,4 +138,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ApiPelotas;
+export default ApiMochilas;

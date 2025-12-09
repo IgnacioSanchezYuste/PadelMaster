@@ -26,10 +26,24 @@ export default function QrScan() {
         }}
         onBarcodeScanned={({ data }) => {
           console.log(data);
-          Linking.openURL(data);
-          //if (data.startsWith("p-")) {
-            //router.replace("./pala_Detail")
-         // }
+          if (data.startsWith("p-")) {
+            router.replace(`./Detalles/pala_Detail?itemID=${data.slice(2)}`);
+          }
+          if (data.startsWith("pe-")) {
+            router.replace(`./Detalles/pelota_Detail?itemID=${data.slice(2)}`);
+          }
+          if (data.startsWith("r-")) {
+            router.replace(`./Detalles/ropa_Detail?itemID=${data.slice(2)}`);
+          }
+          if (data.startsWith("m-")) {
+            router.replace(`./Detalles/mochila_Detail?itemID=${data.slice(2)}`);
+          }
+          if (data.startsWith("a-")) {
+            router.replace(`./Detalles/accesorio_Detail?itemID=${data.slice(2)}`);
+          }
+          if (data.startsWith("z-")) {
+            router.replace(`./Detalles/zapatilla_Detail?itemID=${data.slice(2)}`);
+          }
         }}
       />
 

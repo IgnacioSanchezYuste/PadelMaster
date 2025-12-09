@@ -1,21 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ActivityIndicator, Dimensions, FlatList, StyleSheet, Text, View } from 'react-native';
-import UserCard from './UserCard';
-import { User } from './types';
-import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
+import UserCard from '../UserCard';
+import { User } from '../types';
 
 
-const Apiropa = () => {
+const ApiPelotas = () => {
 
   const { width } = Dimensions.get('window');
 
-  // Definir cuántas columnas mostrar según el ancho
-  const getNumColumns = () => {
-    if (width > 1024) return 4;    // Desktop grande
-    if (width > 768) return 3;     // Tablet/Desktop
-    if (width > 480) return 2;     // Tablets pequeñas
-    return 6;                      // Móviles
-  };
 
   // ✅ Estados correctamente definidos
   const [data, setData] = useState<User[]>([]);
@@ -25,7 +17,7 @@ const Apiropa = () => {
   // Función para obtener datos de la API
   const fetchData = async (): Promise<void> => {
     try {
-      const response = await fetch('https://ignaciosanchezyuste.es/API_PADEL/ropa');
+      const response = await fetch('https://ignaciosanchezyuste.es/API_PADEL/pelotas');
 
       // Verifica si hay respuesta
       if (!response) {
@@ -38,13 +30,13 @@ const Apiropa = () => {
 
       const json = await response.json();
 
-      // ✅ Accede a la propiedad "ropa"
-      if (json && json.ropa && Array.isArray(json.ropa)) {
-        console.log('Número de ropa:', json.ropa.length);
-        setData(json.ropa);
+      // ✅ Accede a la propiedad "palas"
+      if (json && json.pelotas && Array.isArray(json.pelotas)) {
+        console.log('Número de pelotas:', json.pelotas.length);
+        setData(json.pelotas);
       } else {
         console.warn('Formato inesperado:', json);
-        setData(json.ropa);
+        setData(json.pelotas);
       }
     } catch (err: any) {
       console.error('Error en fetchData:', err);
@@ -92,7 +84,6 @@ const Apiropa = () => {
 
   // Renderizado de la lista de usuarios
   // En el return de ApiExample.tsx, reemplaza el FlatList actual con:
-  if (width < 480) {
     return (<FlatList
       data={data}
       renderItem={({ item }) => <UserCard item={item} />}
@@ -102,22 +93,6 @@ const Apiropa = () => {
       style={[styles.flatList, {paddingHorizontal: '5%'}]} // ✅ Ajusta el ancho al 90% para pantallas más grandes
     />
     );
-  }
-  else {
-    return (
-      <FlatList
-        data={data}
-        keyExtractor={(item) => item.id.toString()}
-        numColumns={getNumColumns()}
-
-        columnWrapperStyle={styles.columnWrapper}
-        contentContainerStyle={styles.listContainer}
-        showsVerticalScrollIndicator={true}
-        renderItem={({ item }) => <UserCard item={item} />}
-        style={styles.flatList} // ✅ Añade este estilo
-      />
-    );
-  };
 }
 
 const styles = StyleSheet.create({
@@ -157,4 +132,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Apiropa;
+export default ApiPelotas;

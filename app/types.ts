@@ -3,9 +3,7 @@ export type User = {
   name: string;
   price?: string;
   img?: string;
-  url?: string; 
+  url?: string;
+  Categoría?: string;
   [key: string]: any;
-};
-export type Categoria = {
-  table_name: string;
 };

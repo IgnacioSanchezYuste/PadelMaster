@@ -1,19 +1,15 @@
 import { StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import ApiZapas from './Fetch/FetchZapas';
 
 
 
-
-import Apiropa from './Fetch/FetchRopa';
-
-
-
-
-export default function ropa() {
+export default function Zapatillas() {
 return (
-   <SafeAreaProvider style={{ backgroundColor: '#25292e', paddingTop: 20 }}>
+   <SafeAreaProvider style={{ backgroundColor: '#25292e', paddingTop: 50 }}>
      <SafeAreaView style={styles.safeArea}>
-       <Apiropa />
+      <ApiZapas />
+       
      </SafeAreaView>
    </SafeAreaProvider>
 );

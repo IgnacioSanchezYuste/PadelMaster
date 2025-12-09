@@ -3,19 +3,21 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 
 
-import ApiExample from "./FetchPalas";
+import ApiExample from "./Fetch/FetchPalas";
+import ApiAccesorioss from './Fetch/FetchAccesorios';
 
-export default function DetallePala() {
+
+
+export default function Palas() {
 return (
- <SafeAreaProvider style={{ backgroundColor: '#25292e', paddingTop: 50 }}>
+   <SafeAreaProvider style={{ backgroundColor: '#25292e', paddingTop: 50 }}>
      <SafeAreaView style={styles.safeArea}>
-      <ApiExample />
+      <ApiAccesorioss />
        
      </SafeAreaView>
    </SafeAreaProvider>
 );
 }
-
 const styles = StyleSheet.create({
   safeArea: {
       flex: 1,
