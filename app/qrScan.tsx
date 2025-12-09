@@ -1,9 +1,10 @@
 import { CameraView } from "expo-camera";
 import { Linking, Platform, StatusBar, StyleSheet, Text, View } from "react-native";
-import { Link } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
 export default function QrScan() {
+  const router = useRouter();
   return (
     <View style={styles.container}>
       {Platform.OS === "android" && <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />}
@@ -26,6 +27,9 @@ export default function QrScan() {
         onBarcodeScanned={({ data }) => {
           console.log(data);
           Linking.openURL(data);
+          //if (data.startsWith("p-")) {
+            //router.replace("./pala_Detail")
+         // }
         }}
       />
 

@@ -23,7 +23,7 @@ export default function HomeScreen() {
         {/* Texto principal */}
         <Text style={styles.title}>QR Code Scanner</Text>
         <Text style={styles.subtitle}>
-          Escanea códigos QR rápidamente con tu cámara
+          Escanea códigos QR con tu cámara para ver los detalles del artículo asociado.
         </Text>
 
         {/* Estado del permiso */}
@@ -167,8 +167,7 @@ const styles = StyleSheet.create({
   },
   button: {
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'center',     
     paddingVertical: 16,
     paddingHorizontal: 24,
     borderRadius: 12,
