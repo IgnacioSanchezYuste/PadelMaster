@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { View, TextInput, FlatList, Text, StyleSheet } from 'react-native';
 import { debounce } from 'lodash-es';
+import { useCallback, useEffect, useState } from 'react';
+import { FlatList, StyleSheet, Text, TextInput, View } from 'react-native';
 
 const SearchPalas = () => {
   const [search, setSearch] = useState('');
