@@ -38,11 +38,6 @@ const ApiPelotas = () => {
 
       const json = await response.json();
 
-      // DEBUG
-      console.log('Respuesta JSON completa:', json);
-      console.log('Tipo de json:', typeof json);
-      //console.log('¿Tiene propiedad palas?:', 'palas' in json);
-
       // ✅ Accede a la propiedad "palas"
       if (json && json.pelotas && Array.isArray(json.pelotas)) {
         console.log('Número de pelotas:', json.pelotas.length);
