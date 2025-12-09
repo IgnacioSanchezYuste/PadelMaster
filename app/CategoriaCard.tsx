@@ -1,7 +1,6 @@
-import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
-import { Categoria } from './types';
 import { Link } from 'expo-router';
+import { StyleSheet, Text, View } from 'react-native';
+import { Categoria } from './types';
 
 
 // Definimos el tipo Props para el componente UserCard
