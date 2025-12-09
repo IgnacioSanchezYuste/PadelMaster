@@ -11,7 +11,8 @@ type Props = {
 const UserCard = ({ item }: Props) => {
   return (
     <View style={styles.card}>
-      <View style={styles.imageContainer}> {/* ✅ Contenedor para la imagen */}
+      <View style={styles.imageContainer}>
+        {/* ✅ Contenedor para la imagen */}
         <Image 
           source={{ uri: item.img }} 
           style={styles.image}
