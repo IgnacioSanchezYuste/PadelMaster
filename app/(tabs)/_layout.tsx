@@ -10,6 +10,15 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
+        name="scanner"
+        options={{
+          title: 'Scanner',
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons name={focused ? 'scan' : 'scan-outline'} color={color} size={24}/>
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="index"
         options={{
           title: 'Palas',
@@ -19,14 +28,24 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="about"
+        name="pelotas"
         options={{
-          title: 'About',
+          title: 'Pelotas',
           tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? 'information-circle' : 'information-circle-outline'} color={color} size={24}/>
+            <Ionicons name={focused ? 'tennisball' : 'tennisball-outline'} color={color} size={24}/>
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="pala_Detail"
+        options={{
+          title: 'pala Detail',
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons name={focused ? 'information-circle' : 'information-outline'} color={color} size={24}/>
           ),
         }}
       />
     </Tabs>
+    
   );
 }
