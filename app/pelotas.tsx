@@ -3,7 +3,7 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 
 
-import ApiPelotas from '../FetchPelotas';
+import ApiPelotas from './FetchPelotas';
 
 
 
