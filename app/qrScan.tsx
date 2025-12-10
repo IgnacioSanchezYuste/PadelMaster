@@ -30,7 +30,7 @@ export default function QrScan() {
             router.replace(`./Detalles/pala_Detail?itemID=${data.slice(2)}`);
           }
           if (data.startsWith("pe-")) {
-            router.replace(`./Detalles/pelota_Detail?itemID=${data.slice(2)}`);
+            router.replace(`./Detalles/pelota_Detail?itemID=${data.slice(3)}`);
           }
           if (data.startsWith("r-")) {
             router.replace(`./Detalles/ropa_Detail?itemID=${data.slice(2)}`);

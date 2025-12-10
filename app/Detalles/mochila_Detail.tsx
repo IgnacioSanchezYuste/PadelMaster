@@ -6,7 +6,7 @@ import { linkTo } from 'expo-router/build/global-state/routing';
 
 // Definir el tipo para la ropa
 type mochilas_paleteros = {
-  id: number;
+  id: string;
   img: string;
   name: string;
   price: string;
@@ -40,13 +40,12 @@ export default function Detallemochilas_paleteros() {
         console.log('Respuesta JSON completa:', json);
         console.log('Tipo de json:', typeof json);
 
-        // ✅ La API devuelve { ropa: {...} }
-        if (json && json.mochilas_paleteros && json.mochilas_paleteros.id) {
-          console.log('Mochila encontrada:', json.mochilas_paleteros.name);
-          setmochilas_paleteros(json.mochilas_paleteros);
+        // ✅ La API devuelve { mochilas_paleteros: {...} }
+        if (json && json.mochila_paletero && json.mochila_paletero.id) {
+          console.log('Mochila encontrada:', json.mochila_paletero.name);
+          setmochilas_paleteros(json.mochila_paletero);
         } else {
-          console.warn('Formato inesperado:', json);
-          throw new Error('Formato de respuesta inesperado de la API');
+          throw new Error('Formato de respuesta inesperado de la API, json recibido: ' + JSON.stringify(json));
         }
       } catch (err: any) {
         console.error('Error en fetchMochila:', err);

@@ -36,11 +36,7 @@ export default function DetallePelota() {
 
         const json = await response.json();
 
-        // DEBUG
-        console.log('Respuesta JSON completa:', json);
-        console.log('Tipo de json:', typeof json);
-
-        // ✅ La API devuelve { ropa: {...} }
+        // ✅ La API devuelve { pelota: {...} }
         if (json && json.pelota && json.pelota.id) {
           console.log('Pelota encontrada:', json.pelota.name);
           setPelota(json.pelota);
@@ -49,7 +45,7 @@ export default function DetallePelota() {
           throw new Error('Formato de respuesta inesperado de la API');
         }
       } catch (err: any) {
-        console.error('Error en fetchRopa:', err);
+        console.error('Error en fetchPelota:', err);
         setError(err?.message || 'Error al cargar los datos');
       } finally {
         setLoading(false);
