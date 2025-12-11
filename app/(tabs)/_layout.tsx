@@ -27,6 +27,15 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="NewProduct"
+        options={{
+          title: 'Añadir Producto',
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons name={focused ? 'add-circle' : 'add-circle-outline'} color={color} size={24} />
+          ),
+        }}
+      />
     </Tabs>
     
   );
