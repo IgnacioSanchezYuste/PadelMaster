@@ -11,6 +11,7 @@ type Producto = {
   name: string;
   price: string;
   url: string;
+  photo: string;
   categoria: string; // Nota: en minúsculas para coincidir con la API
 };
 
@@ -45,6 +46,7 @@ export default function NewProduct() {
     name: '',
     price: '',
     url: '',
+    photo: '',
     categoria: 'palas' // Valor por defecto
   };
 
@@ -287,7 +289,13 @@ export default function NewProduct() {
               >
                 <Text style={styles.buttonText}>Limpiar Formulario</Text>
               </TouchableOpacity>
-
+              <TouchableOpacity
+                style={[styles.button, styles.cameraButton]}
+                onPress={() => router.navigate("/camera")}
+                disabled={loading}
+              >
+                <Text style={styles.buttonText}> Hacer Foto</Text>
+              </TouchableOpacity>
               <TouchableOpacity
                 style={[styles.button, styles.backButton]}
                 onPress={() => router.back()}
@@ -405,6 +413,9 @@ const styles = StyleSheet.create({
   },
   backButton: {
     backgroundColor: '#8E8E93',
+  },
+  cameraButton: {
+    backgroundColor: '#34C759',
   },
   buttonText: {
     color: '#ffffff',
