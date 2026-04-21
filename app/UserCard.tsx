@@ -1,27 +1,25 @@
-import React from 'react';
+import { Link } from 'expo-router';
+import { memo } from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { User } from './types';
-import { Link } from 'expo-router';
 
-
-// Definimos el tipo Props para el componente UserCard
 type Props = {
   item: User;
 };
-// Recibe un props con item dentro
+
 const UserCard = ({ item }: Props) => {
   return (
-    <Link href={{ pathname: `./Detalles/${item.Categoría}_Detail`, params: { itemID: item.id } }} asChild>
+    <Link
+      href={{ pathname: `./Detalles/${item.Categoría}_Detail`, params: { itemID: item.id } }}
+      asChild>
       <Pressable style={styles.card}>
         <View style={styles.imageContainer}>
-          <Image 
-            source={{ uri: item.img }} 
-            style={styles.image}
-            resizeMode="contain"
-          />
+          <Image source={{ uri: item.img }} style={styles.image} resizeMode="contain" />
         </View>
         <View style={styles.infoContainer}>
-          <Text style={styles.title} numberOfLines={2}>{item.name}</Text>
+          <Text style={styles.title} numberOfLines={2}>
+            {item.name}
+          </Text>
           <Text style={styles.price}>{item.price} €</Text>
         </View>
       </Pressable>
@@ -39,41 +37,24 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: 6,
     shadowOffset: { width: 0, height: 4 },
-    width: '100%',
-    height: 'auto', // ✅ Altura fija para uniformidad
-    marginHorizontal: 1,
-    marginBottom: 15,
-    textDecorationLine: 'none',
-  },
-  linkd:{
-    textDecorationLine: 'none',
-    padding: 0,
-    margin: 0,
-    height: 'auto',
-    width: 'auto',
-
+    flex: 1,
+    marginBottom: 10,
   },
   imageContainer: {
-    aspectRatio: 1, // ✅ Mantiene relación 2:1 (rectángulo)
+    aspectRatio: 1,
     width: '100%',
-    height: 'auto',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#f5f5f5',
   },
-  
-  
   image: {
     width: '100%',
     height: '100%',
-    margin: 0,
   },
-
   infoContainer: {
     padding: 10,
     minHeight: 80,
   },
-
   title: {
     fontSize: 14,
     fontWeight: '700',
@@ -82,7 +63,6 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     height: 40,
   },
-
   price: {
     fontSize: 15,
     fontWeight: '600',
@@ -91,4 +71,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UserCard;
+export default memo(UserCard);

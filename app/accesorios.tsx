@@ -3,7 +3,6 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 
 
-import ApiExample from "./Fetch/FetchPalas";
 import ApiAccesorioss from './Fetch/FetchAccesorios';
 
 
@@ -21,8 +20,7 @@ return (
 const styles = StyleSheet.create({
   safeArea: {
       flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
+      width: '100%',
   },
   button: {
     fontSize: 20,
